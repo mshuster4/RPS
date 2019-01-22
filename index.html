@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Giftastic</title>
+    <title>Rock Paper Scissors</title>
 </head>
 <body>
 
 <div class="jumbotron">
-    <h1 class="text-center">Rock, Papper Scissors</h1>
+    <h1 class="text-center">Rock, Papper, Scissors</h1>
 </div>
 
 <div class ="container">
@@ -23,53 +24,40 @@
 
      <div class="row">
 
-        <div class="col">
-            <input type="text" class="form-control" id="plaer-one" placeholder="Player One">
+        <div class="col-sm-12">
+            <input type="text" class="form-control "  val="name" placeholder="Player One">
         </div>
-
-        <div class="col">
-            <input type="text" class="form-control" id="player-two" placeholder="Player Two">
-        </div>
-
+    
     </div>
 
     </form>
 
     <div class="row">
+
+        <div class="col-sm-3"></div>
         
         <div class="col-sm-6">
+    
+                <div class="col-sm-4">
+                    <h2 class="choices" data="rock">Rock</h2>
+                </div>
+                <div class="col-sm-4">
+                    <h2 class="choices" data="paper">Paper</h2>
+                </div>
+                <div class="col-sm-4">
+                    <h2 class="choices" data="scissors">Scissors</h2>
+                </div>
 
-            <div class="col-sm-4">
-                <h2>Rock</h2>
-            </div>
-            <div class="col-sm-4">
-                <h2>Paper</h2>
-            </div>
-            <div class="col-sm-4">
-                <h2>Scissors</h2>
-            </div>
-
-        <div class="col-sm-6">
-
-            <div class="col-sm-4">
-                <h2>Rock</h2>
-            </div>
-            <div class="col-sm-4">
-                <h2>Paper</h2>
-            </div>
-            <div class="col-sm-4">
-                <h2>Scissors</h2>
-            </div>
-
-        </div>
+        <div class="col-sm-3"></div>
 
     </div>
 
     <div class="row">
-        
-        <div class="col-sm-4">Wins: </div>
-        <div class="col-sm-4">Losses: </div>
-        <div class="col-sm-4">Ties: </div>
+        <div class="col-sm-6">
+            <p>Wins: <p>
+            <p>Losses: </p>
+            <p>Ties: </p>
+        </div>
 
     </div>
     
