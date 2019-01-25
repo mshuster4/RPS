@@ -20,43 +20,89 @@
 
 <div class ="container">
 
-    <form>
+    <div class="form-row">
 
-     <div class="row">
-
-        <div class="col-sm-12">
-            <input type="text" class="form-control "  val="name" placeholder="Player One">
+        <div class="col">
+            <input type="text" class="form-control " id="name-input" placeholder="Name">
+        </div>
+        <div class="col">
+            <button class="btn btn-primary" id="name-submit-button" type="submit">Submit</button>
         </div>
     
     </div>
 
-    </form>
+
 
     <div class="row">
 
-        <div class="col-sm-3"></div>
-        
         <div class="col-sm-6">
-    
-                <div class="col-sm-4">
-                    <h2 class="choices" data="rock">Rock</h2>
-                </div>
-                <div class="col-sm-4">
-                    <h2 class="choices" data="paper">Paper</h2>
-                </div>
-                <div class="col-sm-4">
-                    <h2 class="choices" data="scissors">Scissors</h2>
-                </div>
 
-        <div class="col-sm-3"></div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="text-center">Player One</h3>
+                </div>
+            </div>
 
-    </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p id="player-one-name"></p>
+                </div>
+            </div>
 
-    <div class="row">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="rock-choice"></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="paper-choice"></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="scissors-choice"></p>
+                </div>
+            </div>
+
+            <div class="row" id="waiting-message"></div>
+
+        </div>
+
         <div class="col-sm-6">
-            <p>Wins: <p>
-            <p>Losses: </p>
-            <p>Ties: </p>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="text-center">Player Two</h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p id="player-two-name"></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="rock-choice"></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="paper-choice"></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="scissors-choice"></p>
+                </div>
+            </div>
+
         </div>
 
     </div>
