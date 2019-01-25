@@ -17,7 +17,6 @@ var chat = database.ref("chat");
 var connectionsRef = database.ref("/connections");
 var isConnectedRef = database.ref(".info/connected");
 
-var numOfPlayers = 0;
 var playerOneName = "";
 var playerTwoName = "";
 var playerOneWins = 0;
@@ -30,51 +29,62 @@ isConnectedRef.on("value", function(snap) {
 if (snap.val()) {
 
         var con = connectionsRef.push(true);
-
         con.onDisconnect().remove(); 
 
-}
+    }
 
 }); 
 
+connectionsRef.on("value", function(snap) {
+
+    var numberOfPlayers = snap.numChildren(); 
+    console.log(numberOfPlayers); 
+
+});
 
 
-$("#name-submit-button").on("click", function() {
+$("#name-submit-button").on("click", function(event) {
+    
 
-    var name = $("#name-input").val().trim(); 
-     $("#name-input").val("");
+    event.preventDefault();
+    var playerName = $("#name-input").val().trim();
+    $("#name-input").val("")
+    console.log(playerName)
 
-    connectionsRef.on("value", function(snap) {
-        
-            if (snap.child(1).exists &&) {
-                
-                playersRef.set({
-                    one: {
-                        playerOneName: name,
-                        wins: playerOneWins,
-                        loss: playerOneLoss,
-                    },
+    playerOneRef.on("value", function(snap) {
 
-                    two: {
-                        playerTwoName: name,
-                        wins: playerTwoWins,
-                        loss: playerTwoLoss,
+        if(snap.exists() === false) {
 
-                });
+            playerOneRef.update({
+                name: playerName,
+                wins: playerOneWins,
+                losses: playerOneLoss, 
+                choice: ""
+            })
 
-                waitingForPlayer();
+        }
 
-            }
+        else if(snap.child(2).exists() === true && snap.child(1).exists() === false) {
 
-            if ((snap.child(1).exits) && (snap.child(2).exists)) {
+            playerOneRef.update({
+                name: playerName
 
-                $("#waiting-message").empty();
+            })
 
-            }
+        $("#player-one-name").text(snap.val().name); 
+        waitingForPlayer(); 
+
+        }
+
+
+
 
     });
 
-});
+
+
+}); 
+
 
 function waitingForPlayer() {
 
@@ -85,13 +95,7 @@ function waitingForPlayer() {
 
 }
 
+function renderChoices() {
 
-
-
-
-
-
-
-
-
+}
 
