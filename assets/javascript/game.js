@@ -5,26 +5,19 @@ var config = {
     projectId: "rock-paper-scissors-83eba",
     storageBucket: "rock-paper-scissors-83eba.appspot.com",
     messagingSenderId: "293978328306"
-  };
+};
 
 firebase.initializeApp(config);
 
 var database = firebase.database();
-var playersRef = database.ref("players");
-var playerOneRef = database.ref("players/one");
-var playerTwoRef = database.ref("players/two");
-var chat = database.ref("chat"); 
 var connectionsRef = database.ref("/connections");
-var isConnectedRef = database.ref(".info/connected");
+var connectedRef = database.ref(".info/connected")
+var playersRef = database.ref("/players");
 
-var playerOneName = "";
-var playerTwoName = "";
-var playerOneWins = 0;
-var playerTwoWins = 0;
-var playerOneLoss = 0;
-var playerTwoLoss = 0;
+var playerOneExists = false;
+var playerTwoExists = false; 
 
-isConnectedRef.on("value", function(snap) {
+connectedRef.on("value", function(snap) {
 
 if (snap.val()) {
 
@@ -37,65 +30,45 @@ if (snap.val()) {
 
 connectionsRef.on("value", function(snap) {
 
-    var numberOfPlayers = snap.numChildren(); 
-    console.log(numberOfPlayers); 
-
+    numberOfPlayers = snap.numChildren(); 
+    
 });
 
 
-$("#name-submit-button").on("click", function(event) {
+
+function renderPlayers(number) {
+
+        connectionsRef.on("value", function(snap) {
+
+            numberOfPlayers = snap.numChildren(); 
     
+        });
 
-    event.preventDefault();
-    var playerName = $("#name-input").val().trim();
-    $("#name-input").val("")
-    console.log(playerName)
+        
+        if (numberOfPlayers == 1) {
+            
+            var playerOneName = $("#name-input").val();
+            console.log(playerOneName);
+            $("#player-one-name").text(playerOneName)
+            $("#name-input").val("");
 
-    playerOneRef.on("value", function(snap) {
-
-        if(snap.exists() === false) {
-
-            playerOneRef.update({
-                name: playerName,
-                wins: playerOneWins,
-                losses: playerOneLoss, 
-                choice: ""
-            })
 
         }
 
-        else if(snap.child(2).exists() === true && snap.child(1).exists() === false) {
+        else if (numberOfPlayers == 2) {
 
-            playerOneRef.update({
-                name: playerName
+            var playerTwoName = $("#name-input").val();
+            console.log(playerTwoName);
+            $("#player-two-name").text(playerTwoName)
+            $("#name-input").val(""); 
 
-            })
-
-        $("#player-one-name").text(snap.val().name); 
-        waitingForPlayer(); 
 
         }
+    
+};
 
+$(document).on("click", "#name-submit-button", function() {
+    
+    renderPlayers(numberOfPlayers);
 
-
-
-    });
-
-
-
-}); 
-
-
-function waitingForPlayer() {
-
-    waitingDiv = $("<div>")
-    waitingDiv.addClass("col-sm-12")
-    waitingDiv.html("<p>" + "Waiting for another player.." + "</p>")
-    $("#waiting-message").append(waitingDiv);
-
-}
-
-function renderChoices() {
-
-}
-
+});
